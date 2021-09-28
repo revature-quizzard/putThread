@@ -87,54 +87,109 @@ public class ThreadsServiceTestSuite {
 
 
     /**
-     * author -
+     * author - Charles Mettee, Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenAncestorsNullOrNotSizeOne(){
+        Threads thread1 = new Threads("threadId", "subject", null, "parentId",
+                "description", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
+        Threads thread2 = new Threads("threadId", "subject", Arrays.asList("parentId", "ancestorId"), "parentId",
+                "description", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
 
+        boolean testResult1 = sut.isValid(thread1);
+        boolean testResult2 = sut.isValid(thread2);
+
+        assertFalse(testResult1);
+        assertFalse(testResult2);
 
     }
 
     /**
-     * author -
+     * author - Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenNullOrEmptyParent(){
+        Threads thread1 = new Threads("threadId", "subject", Arrays.asList("parentId"), null,
+                "description", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
+        Threads thread2 = new Threads("threadId", "", Arrays.asList("parentId"), "",
+                "description", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
 
+
+        boolean testResult1 = sut.isValid(thread1);
+        boolean testResult2 = sut.isValid(thread2);
+
+        assertFalse(testResult1);
+        assertFalse(testResult2);
     }
 
     /**
-     * author -
+     * author - Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenNullOrEmptyDescription(){
+        Threads thread1 = new Threads("threadId", "subject", Arrays.asList("parentId"), "parentId",
+                null, 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
+        Threads thread2 = new Threads("threadId", "", Arrays.asList("parentId"), "parentId",
+                "", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
 
+
+        boolean testResult1 = sut.isValid(thread1);
+        boolean testResult2 = sut.isValid(thread2);
+
+        assertFalse(testResult1);
+        assertFalse(testResult2);
     }
 
     /**
-     * author -
+     * author - Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenChildCountLessThanZero(){
+        Threads thread1 = new Threads("threadId", "subject", Arrays.asList("parentId"), "parentId",
+                "description", -1, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
 
+
+        boolean testResult1 = sut.isValid(thread1);
+
+        assertFalse(testResult1);
 
     }
 
     /**
-     * author -
+     * author - Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenNullOrEmptyDateCreated(){
+        Threads thread1 = new Threads("threadId", "subject", Arrays.asList("parentId"), "parentId",
+                "description", 0, "", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
+        Threads thread2= new Threads("threadId", "", Arrays.asList("parentId"), "parentId",
+                "description", 0, null, "ownerId", Arrays.asList("tag1Id", "tag2Id"));
 
+
+        boolean testResult1 = sut.isValid(thread1);
+        boolean testResult2 = sut.isValid(thread2);
+
+        assertFalse(testResult1);
+        assertFalse(testResult2);
 
     }
 
     /**
-     * author -
+     * author - Sean Smith
      */
     @Test
     public void isValid_returnsFalse_givenNullOrEmptyOwner(){
+        Threads thread1 = new Threads("threadId", "subject", Arrays.asList("parentId"), "parentId",
+                "description", 0, "2021-09-28T12:05:13.628", "", Arrays.asList("tag1Id", "tag2Id"));
+        Threads thread2 = new Threads("threadId", "", Arrays.asList("parentId"), "parentId",
+                "description", 0, "2021-09-28T12:05:13.628", null, Arrays.asList("tag1Id", "tag2Id"));
 
+
+        boolean testResult1 = sut.isValid(thread1);
+        boolean testResult2 = sut.isValid(thread2);
+
+        assertFalse(testResult1);
+        assertFalse(testResult2);
 
     }
 
@@ -155,7 +210,7 @@ public class ThreadsServiceTestSuite {
      * author - Charles Mettee
      */
     @Test
-    public void addThreads_throwsException_givenInvalidThread(){
+    public void updateThreads_throwsException_givenInvalidThread(){
         Threads thread = null;
         boolean testResult = false;
 
@@ -172,7 +227,17 @@ public class ThreadsServiceTestSuite {
      * author - Charles Mettee
      */
     @Test
-    public void addThreads_isSuccessful_givenValidThread(){
+    public void updateThreads_isSuccessful_givenValidThread(){
+        Threads thread = new Threads("threadId", "subject", Arrays.asList("parentId"), "parentId",
+                "description", 0, "2021-09-28T12:05:13.628", "ownerId", Arrays.asList("tag1Id", "tag2Id"));
+
+        try{
+            sut.updateThreads(thread);
+        } catch (Exception e){
+
+        }
+
+        verify(mockThreadsRepo, times(1)).updateThreads(thread);
 
 
     }
