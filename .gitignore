@@ -1,0 +1,18 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+
+# IDE specific files
+/.idea
+
+# Compiled class file
+*.class
+
+# AWS
+.aws-sam
+
+# aws
+.aws-sam
+
+# Target folder
+target/
