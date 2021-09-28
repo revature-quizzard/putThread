@@ -11,5 +11,8 @@
 # AWS
 .aws-sam
 
-#Target folder
+# aws
+.aws-sam
+
+# Target folder
 target/

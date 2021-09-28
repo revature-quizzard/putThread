@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="putThread" />
+        <module name="put-threads-fx" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="putThread" target="8" />
+      <module name="put-threads-fx" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

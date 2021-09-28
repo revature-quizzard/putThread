@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/putThread.iml" filepath="$PROJECT_DIR$/.idea/putThread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/put-threads-fx.iml" filepath="$PROJECT_DIR$/put-threads-fx.iml" />
     </modules>
   </component>
 </project>
