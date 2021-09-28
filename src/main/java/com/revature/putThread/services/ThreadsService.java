@@ -21,7 +21,6 @@ public class ThreadsService {
         if(!isValid(threads)){
             throw new Exception("An error occurred");
         }
-
         threadsRepo.updateThreads(threads);
     }
 
@@ -35,6 +34,9 @@ public class ThreadsService {
         if(threads == null){
             return false;
         }
+        if(threads.getId() == null || threads.getId().trim().equals("")){
+            return false;
+        }
         if(threads.getSubject() == null || threads.getSubject().trim().equals("")){
             return false;
         }
@@ -45,6 +47,12 @@ public class ThreadsService {
             return false;
         }
         if(threads.getDescription() == null || threads.getDescription().trim().equals("")){
+            return false;
+        }
+        if(threads.getChild_count() < 0){
+            return false;
+        }
+        if(threads.getDate_created() == null || threads.getDate_created().length() != 26){
             return false;
         }
         if(threads.getOwner() == null || threads.getOwner().trim().equals("")){
