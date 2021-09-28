@@ -1,4 +1,4 @@
-package com.revature.postThread.services;
+package com.revature.putThread.services;
 
 import com.revature.putThread.models.Threads;
 import com.revature.putThread.repositories.ThreadsRepo;
