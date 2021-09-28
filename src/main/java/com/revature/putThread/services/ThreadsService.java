@@ -52,7 +52,7 @@ public class ThreadsService {
         if(threads.getChild_count() < 0){
             return false;
         }
-        if(threads.getDate_created() == null || threads.getDate_created().length() != 26){
+        if(threads.getDate_created() == null || threads.getDate_created().length() != 23){
             return false;
         }
         if(threads.getOwner() == null || threads.getOwner().trim().equals("")){
