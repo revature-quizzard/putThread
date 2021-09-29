@@ -1,5 +1,6 @@
 package com.revature.putThread.services;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.revature.putThread.models.Threads;
 import com.revature.putThread.repositories.ThreadsRepo;
 import org.junit.jupiter.api.AfterEach;
@@ -17,11 +18,13 @@ public class ThreadsServiceTestSuite {
 
     ThreadsService sut;
     ThreadsRepo mockThreadsRepo;
+    LambdaLogger mockLambdaLogger;
 
     @BeforeEach
     void setUp(){
         mockThreadsRepo = mock(ThreadsRepo.class);
-        sut = new ThreadsService(mockThreadsRepo);
+        mockLambdaLogger = mock(LambdaLogger.class);
+        sut = new ThreadsService(mockThreadsRepo, mockLambdaLogger);
     }
 
     @AfterEach
