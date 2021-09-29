@@ -1,4 +1,4 @@
-package com.revature.postThread;
+package com.revature.putThread;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
@@ -16,20 +16,20 @@ import java.time.LocalDateTime;
 public class PutThreadsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private static final Gson mapper = new GsonBuilder().setPrettyPrinting().create();
-    private final ThreadsRepo threadsRepo = new ThreadsRepo();
-    private final ThreadsService threadsService = new ThreadsService(threadsRepo);
+
 
     /**
-     * @param requestEvent
-     * @param context
-     * @return
+     * @param requestEvent - The proxy event from AWS API Gateway
+     * @param context - the context of the request
+     * @return - A response along with an HTTP status code
      * @Author - Charles Mettee
      */
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 
         LambdaLogger logger = context.getLogger();
-        logger.log("RECEIVED EVENT: " + requestEvent);
+        ThreadsRepo threadsRepo = new ThreadsRepo();
+        ThreadsService threadsService = new ThreadsService(threadsRepo, logger);
 
         Threads threads = mapper.fromJson(requestEvent.getBody(), Threads.class);
         threads.setDate_created(LocalDateTime.now().toString());
