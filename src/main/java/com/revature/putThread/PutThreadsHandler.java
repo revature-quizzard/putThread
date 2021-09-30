@@ -11,8 +11,6 @@ import com.revature.putThread.models.Threads;
 import com.revature.putThread.repositories.ThreadsRepo;
 import com.revature.putThread.services.ThreadsService;
 
-import java.time.LocalDateTime;
-
 public class PutThreadsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private static final Gson mapper = new GsonBuilder().setPrettyPrinting().create();
@@ -31,7 +29,6 @@ public class PutThreadsHandler implements RequestHandler<APIGatewayProxyRequestE
         ThreadsService threadsService = new ThreadsService(threadsRepo, logger);
 
         Threads threads = mapper.fromJson(requestEvent.getBody(), Threads.class);
-        threads.setDate_created(LocalDateTime.now().toString());
 
         APIGatewayProxyResponseEvent respEvent = new APIGatewayProxyResponseEvent();
 
