@@ -10,6 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.revature.putThread.models.Threads;
 import com.revature.putThread.repositories.ThreadsRepo;
 import com.revature.putThread.services.ThreadsService;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PutThreadsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
