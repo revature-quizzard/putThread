@@ -31,6 +31,10 @@ public class PutThreadsHandler implements RequestHandler<APIGatewayProxyRequestE
         Threads threads = mapper.fromJson(requestEvent.getBody(), Threads.class);
 
         APIGatewayProxyResponseEvent respEvent = new APIGatewayProxyResponseEvent();
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization");
+        headers.put("Access-Control-Allow-Origin", "*");
+        respEvent.setHeaders(headers);
 
         try{
             threadsService.updateThreads(threads);
